@@ -4,45 +4,50 @@ function setup() {
     .getBoundingClientRect();
   let canvas = createCanvas(boundingRects.width, boundingRects.height);
   canvas.parent("p5Canvas");
-}
-
-let howManyX = 20;
-let howManyY = 20;
-let seedNum = 0;
-let noiseMult = 0.003;
-
-function mousePressed() {
-  seedNum = random(5);
+  let dom = document.getElementById("eye");
+  let canvas2 = createCanvas(
+    dom.getBoundingClientRect().width,
+    dom.getBoundingClientRect().height
+  );
+  canvas.parent("eye");
+  var cnv = createCanvas(windowWidth, 300);
+  cnv.position((windowWidth - width) / 2, (windowHeight - height) / 2 + 30);
 }
 
 function draw() {
-  // randomSeed(seedNum);
-  noiseMult = map(mouseX, 0, width, 0, 0.1);
-  noiseSeed(seedNum);
+  //   background(220);
+  //whites ofeye
   noStroke();
   fill(255);
-  rect(0, 0, width, height);
-  let tileWidth = width / (howManyX + 1);
-  let tileHeight = height / (howManyY + 1);
-  for (let tileCntX = 0; tileCntX < howManyX; tileCntX++) {
-    for (let tileCntY = 0; tileCntY < howManyY; tileCntY++) {
-      let tileCenterX = tileWidth * (tileCntX + 1);
-      let tileCenterY = tileHeight * (tileCntY + 1);
-      // let randAngle = random(0, radians(360));
-      let noiseAngle =
-        radians(360) * noise(tileCntX * noiseMult, tileCntY * noiseMult);
-      push();
-      translate(tileCenterX, tileCenterY);
-      // rotate(randAngle);
-      rotate(noiseAngle);
-      noFill();
-      stroke(0);
-      strokeWeight(10);
-      line(0 - tileWidth * 0.5 + 5, 0, 0 + tileWidth * 0.5 - 5, 0);
-      // fill(255, 0, 0);
-      // noStroke();
-      // circle(0 + tileWidth * 0.5 - 5, 0, 10);
-      pop();
-    }
-  }
+  circle(width / 2.45, height / 1.1, width / 12);
+  circle(width / 1.7, height / 1.1, width / 12);
+  //iris
+  let xc = constrain(
+    mouseX,
+    width / 2.45 - width / 70,
+    width / 2.45 + width / 70
+  );
+  let xs = constrain(
+    mouseY,
+    height / 1.1 - width / 75,
+    height / 1.1 + width / 75
+  );
+  fill(0);
+  circle(xc, xs, width / 25);
+  let xc2 = constrain(
+    mouseX,
+    width / 1.7 - width / 70,
+    width / 1.7 + width / 70
+  );
+  let xs2 = constrain(
+    mouseY,
+    height / 1.1 - width / 75,
+    height / 1.1 + width / 75
+  );
+  fill(0);
+  circle(xc2, xs2, width / 25);
+  //glare
+  fill(255);
+  circle(xc + width / 90, xs - width / 90, width / 90);
+  circle(xc2 + width / 90, xs2 - width / 90, width / 90);
 }

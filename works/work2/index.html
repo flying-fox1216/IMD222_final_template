@@ -3,14 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../style/css/eachWork.css" />
+    <link rel="stylesheet" href="./css.css" />
+    <script src="./libs/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="./rect.js"></script>
+    <script src="./sketch2.js"></script>
     <title>작품제목이 여기 들어갑니다</title>
   </head>
   <body>
     <div class="container">
-      <div id="p5Canvas"></div>
+      <div id="matterDiv"></div>
+      <div id="p5Canvas">
+        <div id="eye">
+          <img src="image/fox2.png" alt="fox" width="100%"/></div>
+        <!-- <div class="feet"><img src="image/feet.png" alt="feet"width="100%" /></div> -->
+        <div class="code">
+      </div>
     </div>
     <script src="./sketch.js"></script>
+    
   </body>
 </html>
