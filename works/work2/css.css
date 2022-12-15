@@ -25,19 +25,3 @@
   box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
     0px 1px 3px rgba(0, 0, 0, 0.3);
 }
-
-#eye {
-  text-align: center;
-  margin-top: 45%;
-  /* height: 300px;
-  width: 100%; */
-}
-
-#eye img {
-  border-bottom: 5px solid #000000;
-}
-
-.feet {
-  text-align: center;
-  margin-top: -25%;
-}
