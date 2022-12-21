@@ -25,7 +25,7 @@ function draw() {
   imageMode(CENTER);
   fill("#f19955");
   noStroke();
-  rect(0, height / 2.35, width, height / 2);
+  rect(0, height / 2.35, width, height);
   image(bg, width / 2, height / 4, width, height / 3);
   image(bg2, width / 2, height / 3, width, height / 3);
 
@@ -41,8 +41,8 @@ function draw() {
   );
   let xs = constrain(
     mouseY,
-    height / eyeH - width / 75,
-    height / eyeH + width / 75
+    height / eyeH - width / 40,
+    height / eyeH + width / 40
   );
   fill(0);
   circle(xc, xs, width / 15);
@@ -53,8 +53,8 @@ function draw() {
   );
   let xs2 = constrain(
     mouseY,
-    height / eyeH - width / 75,
-    height / eyeH + width / 75
+    height / eyeH - width / 40,
+    height / eyeH + width / 40
   );
   fill(0);
   circle(xc2, xs2, width / 15);

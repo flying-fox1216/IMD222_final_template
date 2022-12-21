@@ -69,8 +69,8 @@ function draw() {
   );
   let xs = constrain(
     mouseY,
-    height / eyeH - width / 75,
-    height / eyeH + width / 75
+    height / eyeH - width / 50,
+    height / eyeH + width / 50
   );
   fill(0);
   circle(xc, xs, width / 15);
@@ -81,8 +81,8 @@ function draw() {
   );
   let xs2 = constrain(
     mouseY,
-    height / eyeH - width / 75,
-    height / eyeH + width / 75
+    height / eyeH - width / 50,
+    height / eyeH + width / 50
   );
   fill(0);
   circle(xc2, xs2, width / 15);
