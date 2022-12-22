@@ -1,3 +1,5 @@
+var rain = [];
+
 function setup() {
   let boundingRects = document
     .getElementById("p5Canvas")
@@ -6,20 +8,62 @@ function setup() {
   canvas.parent("p5Canvas");
   rain.push(new Rain());
   score = new Score();
-  box = new Player(0, 0, 30, 6, 100);
+  box = new Player();
   box.setStart();
   noStroke();
 }
 
+let LeyeW = 3;
+let ReyeW = 1.4;
+let eyeH = 5;
+let eyeS = 7;
+
 function draw() {
   background(0);
+
+  noStroke();
+  fill(255);
+  ellipse(width / LeyeW, height / eyeH, width / 4, width / 7);
+  ellipse(width / ReyeW, height / eyeH, width / 4, width / 7);
+  //iris
+  let xc = constrain(
+    box.x,
+    width / LeyeW - width / 20,
+    width / LeyeW + width / 20
+  );
+  let xs = constrain(
+    box.y,
+    height / eyeH - width / 75,
+    height / eyeH + width / 75
+  );
+  fill(0);
+  ellipse(xc, xs, width / 20, width / 9);
+  let xc2 = constrain(
+    box.x,
+    width / ReyeW - width / 20,
+    width / ReyeW + width / 20
+  );
+  let xs2 = constrain(
+    box.y,
+    height / eyeH - width / 75,
+    height / eyeH + width / 75
+  );
+  fill(0);
+  ellipse(xc2, xs2, width / 20, width / 9);
+  //glare
+  fill(100);
+  ellipse(xc + width / 500, xs - width / 500, width / 150, width / 20);
+  ellipse(xc2 + width / 500, xs2 - width / 500, width / 150, width / 20);
+  // fill(255);
+  // circle(xc + width / 90, xs - width / 50, width / 75);
+  // circle(xc2 + width / 90, xs2 - width / 50, width / 75);
+
   box.render();
   score.render();
 
   for (var j = 0; j < rain.length; j++) {
     rain[j].render();
   }
-
   if (frameCount % 150 == 0) {
     addRain();
   }
@@ -32,7 +76,7 @@ function addRain() {
 }
 
 class Player {
-  constructor(x, y, s, sp, hp) {
+  constructor() {
     this.x = 0;
     this.y = 0;
     this.size = 30;
@@ -91,9 +135,9 @@ class Score {
     textAlign(CENTER);
     text(this.count, width / 2, height / 20);
 
-    if (box.hp <= 0) {
+    if (box.hp == 0) {
       this.count = "you Die";
-      PushManager();
+      push();
     }
   }
 }
@@ -121,12 +165,11 @@ class Rain {
       this.y = -200;
     }
 
-    if (box.y < this.y + this.h + 10);
-    {
+    if (box.y < this.y + this.h + 10) {
       if (box.hp != 0) {
         if (box.x < this.x && box.x + box.size > this.x + this.w) {
           this.stop();
-          score.count += 5;
+          score.count -= 5;
         } else {
           if (this.y > height) {
             score.count += 1;
@@ -139,6 +182,6 @@ class Rain {
   stop() {
     this.x = random(10, width - 10);
     this.y = -100;
-    box.hp -= 10;
+    box.hp -= 20;
   }
 }

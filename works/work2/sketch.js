@@ -39,8 +39,14 @@ function mousePressed() {
   this.y = height / 2;
 }
 
+let LeyeW = 3;
+let ReyeW = 1.4;
+let eyeH = 5;
+let eyeS = 7;
+
 function draw() {
   background(51);
+
   s.death();
   s.update();
   s.show();
@@ -50,7 +56,7 @@ function draw() {
   }
 
   fill(255, 0, 100);
-  circle(food.x + 15, food.y + 15, scl);
+  circle(food.x + width / 70, food.y + width / 70, scl);
 }
 
 function keyPressed() {
@@ -123,11 +129,33 @@ function Snake() {
   };
 
   this.show = function () {
-    fill(255);
+    fill("#399700");
     for (var i = 0; i < this.tail.length; i++) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
-    fill(255);
+    fill("#399700");
     rect(this.x, this.y, scl, scl);
+
+    noStroke();
+    fill(255);
+    circle(this.x + scl / 2, this.y + scl / 2, width / 40);
+
+    //iris
+    let xc = constrain(
+      food.x + width / 70,
+      this.x + scl / 2 - scl + 26,
+      this.x + scl / 2 + scl - 26
+    );
+    let xs = constrain(
+      food.y + width / 70,
+      this.y + scl / 2 - scl + 26,
+      this.y + scl / 2 + scl - 26
+    );
+    fill(0);
+    circle(xc, xs, width / 80);
+
+    //glare
+    fill(255);
+    circle(xc + 2, xs - 2, width / 250);
   };
 }
