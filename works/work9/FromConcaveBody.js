@@ -1,6 +1,6 @@
-class P5Polygon {
-  constructor(x, y, sides, radius, options) {
-    this.body = Matter.Bodies.polygon(x, y, sides, radius, options);
+class FromConcaveBody {
+  constructor(body) {
+    this.body = body;
     Matter.Composite.add(engine.world, this.body);
     this.fillColor = null;
     this.strokeColor = null;
@@ -23,11 +23,14 @@ class P5Polygon {
     } else noStroke();
     if (this.fillColor !== null) fill(this.fillColor);
     else noFill();
-    beginShape();
-    this.body.vertices.forEach((v) => {
-      vertex(v.x, v.y);
-    });
-    endShape(CLOSE);
+
+    this.body.parts
+      .filter((part, idx) => idx !== 0)
+      .forEach((part) => {
+        beginShape();
+        part.vertices.forEach((v) => vertex(v.x, v.y));
+        endShape(CLOSE);
+      });
   }
   renderDirVector() {
     strokeWeight(1);

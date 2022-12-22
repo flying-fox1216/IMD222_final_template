@@ -5,10 +5,10 @@ class Ground extends Box {
   }
 
   show() {
-    const pos = this.body.position;
+    const Gpos = this.body.position;
     const angle = this.body.angle;
     push();
-    translate(pos.x, pos.y);
+    translate(Gpos.x, Gpos.y);
     rotate(angle);
     noStroke();
     fill("#00540a");

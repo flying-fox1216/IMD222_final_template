@@ -1,4 +1,4 @@
-class P5Rect {
+class Rect {
   constructor(x, y, width, height, options) {
     this.body = Matter.Bodies.rectangle(x, y, width, height, options);
     Matter.Composite.add(engine.world, this.body);

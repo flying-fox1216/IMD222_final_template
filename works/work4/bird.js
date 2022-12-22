@@ -9,10 +9,10 @@ class Bird {
   }
 
   show() {
-    const pos = this.body.position;
+    const Birdpos = this.body.position;
     const angle = this.body.angle;
     push();
-    translate(pos.x, pos.y);
+    translate(Birdpos.x, Birdpos.y);
     rotate(angle);
     fill(255);
     rectMode(CENTER);
