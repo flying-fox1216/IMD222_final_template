@@ -1,53 +1,65 @@
+let bg;
+let bg2;
+
 function setup() {
   let boundingRects = document
     .getElementById("p5Canvas")
     .getBoundingClientRect();
   let canvas = createCanvas(boundingRects.width, boundingRects.height);
   canvas.parent("p5Canvas");
-  let dom = document.getElementById("eye");
-  let canvas2 = createCanvas(
-    dom.getBoundingClientRect().width,
-    dom.getBoundingClientRect().height
-  );
-  canvas.parent("eye");
-  var cnv = createCanvas(windowWidth, 300);
-  cnv.position((windowWidth - width) / 2, (windowHeight - height) / 2 + 30);
+  // noStroke();
+  // background(255);
+  bg = loadImage("./image/fox2.png");
+  bg2 = loadImage("./image/feet.png");
 }
 
+let howManyX = 20;
+let howManyY = 20;
+
+let LeyeW = 2.8;
+let ReyeW = 1.55;
+let eyeH = 2.2;
+let eyeS = 7;
+
 function draw() {
-  //   background(220);
-  //whites ofeye
+  imageMode(CENTER);
+  fill(0);
+  noStroke();
+  rect(0, height / 1.75, width, 10);
+  image(bg, width / 2, height / 2.5, width, height / 3);
+  image(bg2, width / 2, height / 2.2, width, height / 3);
+
   noStroke();
   fill(255);
-  circle(width / 2.45, height / 2.5, width / 12);
-  circle(width / 1.7, height / 2.5, width / 12);
+  circle(width / LeyeW, height / eyeH, width / 6);
+  circle(width / ReyeW, height / eyeH, width / 6);
   //iris
   let xc = constrain(
     mouseX,
-    width / 2.45 - width / 70,
-    width / 2.45 + width / 70
+    width / LeyeW - width / 50,
+    width / LeyeW + width / 50
   );
   let xs = constrain(
     mouseY,
-    height / 2.5 - width / 75,
-    height / 2.5 + width / 75
+    height / eyeH - width / 40,
+    height / eyeH + width / 40
   );
   fill(0);
-  circle(xc, xs, width / 25);
+  circle(xc, xs, width / 12);
   let xc2 = constrain(
     mouseX,
-    width / 1.7 - width / 70,
-    width / 1.7 + width / 70
+    width / ReyeW - width / 50,
+    width / ReyeW + width / 50
   );
   let xs2 = constrain(
     mouseY,
-    height / 2.5 - width / 75,
-    height / 2.5 + width / 75
+    height / eyeH - width / 40,
+    height / eyeH + width / 40
   );
   fill(0);
-  circle(xc2, xs2, width / 25);
+  circle(xc2, xs2, width / 12);
   //glare
   fill(255);
-  circle(xc + width / 90, xs - width / 90, width / 90);
-  circle(xc2 + width / 90, xs2 - width / 90, width / 90);
+  circle(xc + width / 90, xs - width / 90, width / 60);
+  circle(xc2 + width / 90, xs2 - width / 90, width / 60);
 }
