@@ -106,6 +106,12 @@ function draw() {
   bird.show();
   slingshot.show();
 
+  fill(0);
+  noStroke();
+  textSize(20);
+  textAlign(CENTER);
+  text("스페이스바 : 공 리셋 / R : 박스 리셋", width / 2, height / 20);
+
   // noStroke();
   // fill(255);
   // circle(width / LeyeW, height / eyeH, width / 7);
